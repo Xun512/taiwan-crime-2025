@@ -3,6 +3,7 @@
   const titles={home:'首頁總覽',query:'資料查詢',age:'年齡與性別',violence:'暴力犯罪','county-map':'縣市犯罪地圖',compare:'自由比較',method:'資料來源與方法'};
   const aliases={overview:'home',explore:'age',rates:'age','age-scope-title':'age','pairing-title':'age','violence-scope-title':'violence'};
   const sidebar=document.getElementById('sidebar'),toggle=document.getElementById('menuToggle');
+  const closeMenu=document.getElementById('menuClose');
   const mobile=window.matchMedia('(max-width: 800px)');
   let desktopOpen=true;
   function setMenu(open){
@@ -13,6 +14,7 @@
     toggle.setAttribute('aria-label',open?'收合導覽選單':'展開導覽選單');
     toggle.textContent=mobile.matches?'☰ 選單':open?'☰ 收合選單':'☰ 展開選單';
     sidebar.inert=!open;
+    if(mobile.matches&&open)closeMenu.focus();
   }
   function ageView(view){
     document.querySelectorAll('[data-age-panel]').forEach(p=>p.hidden=p.dataset.agePanel!==view);
@@ -31,6 +33,7 @@
     if(raw==='age-scope-title'||raw==='pairing-title')document.getElementById(raw).scrollIntoView({block:'start'});
   }
   toggle.addEventListener('click',()=>setMenu(mobile.matches?!sidebar.classList.contains('open'):!desktopOpen));
+  closeMenu.addEventListener('click',()=>{setMenu(false);toggle.focus()});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mobile.matches&&sidebar.classList.contains('open')){setMenu(false);toggle.focus()}});
   document.addEventListener('click',e=>{if(mobile.matches&&!sidebar.contains(e.target)&&!toggle.contains(e.target))setMenu(false)});
   mobile.addEventListener('change',()=>setMenu(mobile.matches?false:desktopOpen));

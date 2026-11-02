@@ -17,6 +17,7 @@ nav.edition-switch>a:focus-visible{outline:3px solid var(--focus,#9d6518);outlin
 .sidebar::-webkit-scrollbar-track{background:var(--surface)}
 .sidebar::-webkit-scrollbar-thumb{background:var(--line-strong);border:2px solid var(--surface);border-radius:8px}
 .sidebar::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+.mobile-menu-head,.menu-backdrop{display:none}
 html{scroll-padding-top:calc(var(--platform-header-height,125px) + 20px)}
 @media(min-width:801px){.topbar{flex-wrap:wrap}.topbar .top-actions{margin-left:auto}.topbar h1{white-space:nowrap}}
 @media(min-width:801px) and (max-width:1150px){.topbar .top-actions{flex-basis:100%}}
@@ -25,8 +26,12 @@ html{scroll-padding-top:calc(var(--platform-header-height,125px) + 20px)}
   .topbar .theme-switch{width:auto;flex:1 1 230px;order:0}
   .topbar .edition-switch{flex:0 1 auto;order:1}
   .topbar .edition-switch>span{display:none}
-  .sidebar{top:var(--platform-header-height,125px)}
+  .sidebar{top:0;bottom:0;z-index:40;width:min(300px,86vw);padding-top:max(18px,env(safe-area-inset-top));padding-bottom:max(20px,env(safe-area-inset-bottom))}
   .sidebar.open{visibility:visible}
+  .mobile-menu-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 10px 16px;margin-bottom:10px;border-bottom:1px solid var(--line)}
+  .mobile-menu-head strong{font-size:15px;color:var(--ink)}
+  .mobile-menu-head button{min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:6px;background:var(--surface-soft);color:var(--ink);font-size:20px}
+  .sidebar.open+.app-shell>.menu-backdrop{display:block;position:fixed;inset:0;background:rgb(10 25 30 / 45%);z-index:30;touch-action:none}
   .scope-notice,#pairing-title,#age-scope-title,.workspace section{scroll-margin-top:calc(var(--platform-header-height,125px) + 20px)}
   body>header>.theme-switch{order:2;flex:1 1 230px;width:auto}
   body>header>.edition-switch{order:3;margin-left:auto}
