@@ -10,6 +10,13 @@ nav.edition-switch>a:focus-visible{outline:3px solid var(--focus,#9d6518);outlin
 .topbar>div:not(.top-actions){min-width:0}
 .sidebar.collapsed{transform:translateX(-100%);visibility:hidden;pointer-events:none}
 .sidebar.collapsed+.app-shell{margin-left:0}
+/* Allow the entire sidebar to scroll in short desktop windows. */
+.sidebar{overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:var(--line-strong) var(--surface)}
+.sidebar>*{flex-shrink:0}
+.sidebar::-webkit-scrollbar{width:8px}
+.sidebar::-webkit-scrollbar-track{background:var(--surface)}
+.sidebar::-webkit-scrollbar-thumb{background:var(--line-strong);border:2px solid var(--surface);border-radius:8px}
+.sidebar::-webkit-scrollbar-thumb:hover{background:var(--muted)}
 html{scroll-padding-top:calc(var(--platform-header-height,125px) + 20px)}
 @media(min-width:801px){.topbar{flex-wrap:wrap}.topbar .top-actions{margin-left:auto}.topbar h1{white-space:nowrap}}
 @media(min-width:801px) and (max-width:1150px){.topbar .top-actions{flex-basis:100%}}
