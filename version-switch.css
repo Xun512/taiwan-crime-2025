@@ -1,0 +1,9 @@
+/* Shared by the original report and the fifth-edition data platform. */
+body{padding-bottom:82px}
+nav.edition-switch{position:fixed;right:18px;bottom:16px;z-index:50;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px;margin:0;padding:6px;background:var(--surface,#fff);color:var(--ink,#142e38);border:1px solid var(--line-strong,#a8bdb4);border-radius:10px;box-shadow:0 4px 20px var(--shadow,#17382d15);width:auto;max-width:calc(100vw - 24px);font-size:12px}
+nav.edition-switch>span{padding:0 9px;color:var(--muted,#566c75);font-size:11px}
+nav.edition-switch>a{display:inline-flex!important;align-items:center;justify-content:center;min-height:40px;padding:8px 12px;border:1px solid transparent;border-radius:6px;white-space:nowrap;color:var(--ink,#142e38);font-size:12px;text-decoration:none}
+nav.edition-switch>a:hover{background:var(--hover,#e9f0e8)}
+nav.edition-switch>a[aria-current="page"]{background:var(--solid,#142e38);color:var(--on-solid,#fff);font-weight:700}
+nav.edition-switch>a:focus-visible{outline:3px solid var(--focus,#9d6518);outline-offset:2px}
+@media(max-width:500px){nav.edition-switch{left:12px;right:12px;bottom:10px;max-width:none;gap:4px}nav.edition-switch>span{display:none}nav.edition-switch>a{flex:1;padding:8px 7px;font-size:11px}}
