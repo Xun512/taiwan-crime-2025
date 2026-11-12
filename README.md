@@ -1,130 +1,56 @@
-# 臺灣犯罪觀察｜2025 第五版
+# 臺灣犯罪觀察｜2025
 
-此交付包可部署到現有 `Xun512/2025-` GitHub Pages。採 HTML、CSS、原生 JavaScript；無套件安裝、編譯、API 金鑰或後端需求。這是已完成的本機交付版本，尚未上傳或替換 GitHub 正式網站。
+以警政署公開統計整理臺灣 2025 年刑事案件、犯罪嫌疑犯、被害人與各縣市資料，並提供 2017–2025 年暴力犯罪趨勢。網站使用 HTML、CSS 和原生 JavaScript，可直接部署至 GitHub Pages。
 
-## 新版架構
+- [第五版｜資料平台](https://xun512.github.io/2025-/index.html)
+- [第四版｜長頁報告](https://xun512.github.io/2025-/v4.html)
 
-桌面使用左側固定導覽、上方頁名與主題操作、右側獨立工作區。七個工作區一次僅顯示一個，切換保留本次開啟頁面的分析條件。年齡頁另分「性別結構」與「犯罪嫌疑人口率」兩個子工作區，避免重回長頁。
+## 網站功能
 
-| 導覽 | 網址片段 | 功能 |
-| --- | --- | --- |
-| 首頁總覽 | `#home` | 三項年度指標、六個快速入口、案件分布 |
-| 資料查詢 | `#query` | 對象／地區／案類／年齡／性別／指標；圖表及表格；CSV |
-| 年齡與性別 | `#age`、`#rates` | 原有結構、具名案類前五、明細搜尋及人口率 |
-| 暴力犯罪 | `#violence` | 原有七案類、案件／嫌疑犯／被害人、歷史定義 |
-| 縣市犯罪地圖 | `#county-map` | 原有 22 縣市 SVG、A/B 選擇、指標與明細 |
-| 自由比較 | `#compare` | 原有 A/B、人數／占比／人口率、差異與 CSV |
-| 資料來源與方法 | `#method` | 全部原有來源及限制、公式、查閱日期與版本紀錄 |
+- **年度總覽與查詢**：查看案件分布，依資料可用範圍篩選案類、年齡或性別。第五版另有獨立查詢工作區。
+- **年齡與性別**：查看嫌疑犯與被害人的分布，以及每十萬人口的犯罪嫌疑犯人數。
+- **歷年暴力犯罪**：第四版與第五版共用 2017–2025 年資料。可切換指標查看七類案件的發生數、總破獲數或嫌疑犯人數，也可選擇年份查看每一案類的男性、女性嫌疑犯及被害人人數。
+- **縣市地圖與自由比較**：查看 22 縣市警察機關別案件統計，或比較兩組條件的統計數字。
+- **版本切換與下載**：頁首可切換第四版、第五版及顯示主題。歷年暴力犯罪與性別明細各有 CSV 下載按鈕。
 
-保留舊連結 `#overview`、`#explore`、`#rates`、`#age-scope-title`、`#pairing-title` 的導向。不存在的片段回到首頁。片段路由不需要 GitHub Pages 的伺服器 rewrite；所有資源採 `./` 相對路徑，適用 `/2025-/` 子目錄。
+## 如何解讀統計
 
-## 修改／新增檔案
+- **2017 年 1 月**起，暴力犯罪項下的「強制性交」排除「對幼性交」。[警政統計月報表 3 附註](https://www.npa.gov.tw/ch/app/data/doc?detailNo=949193398038827008&module=wg055&type=s#page=27)
+- **2020 年 6 月 19 日**起，未滿 12 歲兒童不再列入警方受理、處理的刑事案件件數及查獲嫌疑犯人數統計。[警政署統計表附註](https://wwwcdn.npa.gov.tw/ch/app/data/doc?detailNo=816231117882421248&module=wg063&type=s)
+- **2024 年 9 月**起，部分案件改按被害人計數。2024 年全年涵蓋兩種口徑，與 2025 年的件數差異可能同時反映案件變化與計數方式變動。[警政工作年報](https://www.npa.gov.tw/ch/app/data/doc?detailNo=1452952881236807680&module=wg031&type=s) · [2025 年暴力犯罪通報](https://www.npa.gov.tw/ch/app/data/doc?detailNo=1508721510041260032&module=wg057&type=s)
+- **2023 年的資料版本**：性別原表的暴力犯罪嫌疑犯合計為 826 人，月報年度表為 819 人。網站在各表中保留其來源數值。[嫌疑犯性別原表](https://data.gov.tw/dataset/176673) · [警政統計月報表 3](https://www.npa.gov.tw/ch/app/data/doc?detailNo=949193398038827008&module=wg055&type=s#page=25)
 
-原儲存庫只有 `index.html`。新版修改該檔案的資訊架構，將內嵌資產拆出；沒有更換原始資料集。
+案件以件計，嫌疑犯與被害人以人計。性別表呈現兩組各自的分布，無法由此推算個案中的嫌疑犯與被害人配對。縣市地圖採警察機關別統計，實際案發地與當事人居住地可能不同。
 
-| 檔案 | 用途與變動 |
+## 資料來源
+
+| 資料 | 來源 |
 | --- | --- |
-| `index.html` | 修改：平台外框、七工作區、統一查詢介面、版本與公式說明；保留原有分析內容、ID 和來源 |
-| `data.js` | 拆出：51 類全國案件、嫌疑犯及被害人年齡／性別表；原文 SHA-256 一致 |
-| `extended-data.js` | 拆出：人口分母、既存人口率及七類暴力犯罪；原文 SHA-256 一致 |
-| `county-data.js` | 拆出：22 縣市統計、人口及 SVG 路徑；原文 SHA-256 一致 |
-| `app.js`、`extended.js`、`explorers.js`、`explorer-math.js` | 拆出：原圖表、搜尋、各項 CSV、比較及地圖邏輯；原文 SHA-256 一致 |
-| `theme.js` | 拆出：三種主題及偏好記憶；原文 SHA-256 一致 |
-| `style.css`、`extended.css`、`notes.css`、`theme.css`、`explorers.css` | 拆出原樣式；移除遠端 Google Fonts 匯入，改用系統中文字型後備 |
-| `platform.css` | 新增：側邊導覽、平台排版、查詢工作台、手機導覽及響應式覆寫 |
-| `platform.js` | 新增：路由、目前導覽狀態、年齡頁子頁、手機導覽與焦點、比較提醒 |
-| `query-model.js` | 新增：讀取既存彙總資料的純查詢模型；驗證不支援的交叉條件 |
-| `query.js` | 新增：篩選同步、結果圖表／表格切換、單位／分母說明、搜尋及 CSV |
-| `map-license.txt` | 地圖 MIT 授權，以本地檔案保留 |
-| `.nojekyll` | 停用不必要的 Jekyll 處理 |
-| `README.md`、`AUDIT.md`、`TEST-REPORT.md` | 操作、盤點及實際驗收紀錄 |
-| `verification/` | 可重跑的 Node／Python 檢查、基準雜湊與第四版備份；不必上傳 Pages |
+| 2025 年全般刑案、嫌疑犯及被害人 | [警政署重要統計結果表](https://www.npa.gov.tw/ch/app/data/view?id=2217&module=wg056&serno=fbf5a752-9c50-4eb1-a3ac-8d4f7112c70a) |
+| 2017–2025 年暴力犯罪年度數值 | [警政署《警政統計月報》表 3](https://www.npa.gov.tw/ch/app/data/doc?detailNo=949193398038827008&module=wg055&type=s#page=25) |
+| 2017–2024 年各案類男女數量 | [嫌疑犯按性別分](https://data.gov.tw/dataset/176673) · [被害人按年齡別分，取男女總計欄](https://data.gov.tw/dataset/176672) |
+| 2025 年暴力犯罪男女數量 | [警政署 114 年暴力犯罪通報](https://www.npa.gov.tw/ch/app/data/doc?detailNo=1508721510041260032&module=wg057&type=s) |
+| 人口分母 | [內政部戶籍人口統計](https://data.gov.tw/dataset/14226) |
+| 地圖邊界 | [taiwan-atlas](https://github.com/dkaoster/taiwan-atlas) · [地圖授權](map-license.txt) |
 
-未引入大型框架或網路圖表服務。資料與地圖皆隨檔案附帶；拆檔可讓瀏覽器分別快取資產。尚未量測實際網路載入速度，不宣稱效能提升百分比。
+## 本機預覽與部署
 
-## 功能保留與新增
+下載或解壓完整網站後，在 `index.html` 所在目錄執行：
 
-- 保留案件總覽前 10／全部 51 類、年齡與性別、前五大、案類搜尋。
-- 保留七類暴力犯罪、一般／暴力犯罪嫌疑人口率、性別與排序條件。
-- 保留自由比較範例及 A/B 自訂、同尺度長條、百分點／相對變化／倍數、零分母處理。
-- 保留 22 縣市地圖、滑鼠與鍵盤選取、A/B 縣市、案類、件數／人口率、案類分布。
-- 保留原有五處 CSV 下載及三種主題；新增查詢結果 CSV。
-- 新增七工作區導覽、首頁入口、統一查詢、手機選單及可收合查詢條件。
-- 新增查詢能力驗證、結果分母與單位、比較多條件差異提醒。
-
-上述「保留」是指原始程式與介面已納入新版，不表示已在瀏覽器逐項驗收。請同時閱讀 `TEST-REPORT.md`。
-
-## 查詢能力及統計限制
-
-| 對象 | 可用條件 | 停用條件及原因 |
-| --- | --- | --- |
-| 犯罪嫌疑犯 | 全國 × 官方年齡組 × 性別 × 案類；人數、同齡全部人數占比、人口率 | 縣市：目前沒有同口徑縣市年齡／性別交叉資料 |
-| 被害人 | 全國 × 被害人官方年齡組 × 性別 × 案類；人數與同齡全部人數占比 | 縣市、人口率：沒有所需交叉資料及適用分組人口分母 |
-| 刑事案件 | 全國或 22 縣市警察機關別 × 案類；件數、占同地區全部案件、每十萬人口件數 | 年齡、性別：案件表無此交叉欄位 |
-
-不將嫌疑犯與被害人混成同一母體，也不提供兩種對象跨母體相減。被害人與嫌疑犯年齡分組各自沿用官方表，沒有強制對齊、插值或估算。
-
-查詢占比和既有自由比較沿用同一公式：人數除以同齡全部案類、男女合計人數；不因選擇男性或女性而改成該性別的總人數。性別結構圖另以該組總人數為分母。所有人口率持續標示「本站計算」，人口分母沿用 2024、2025 年底人口平均。0.5 人只出現在平均人口近似值，不是犯罪計數。
-
-縣市案件為警察機關別，不是逐案實際發生地或當事人居住地；戶籍人口是比率分母，不表示案件當事人住在該縣市。地圖不能作為治安排名、個人犯罪機率或因果證據。51 類案件可加總，但另列的「總計」、七類暴力犯罪及人數表的合計／子項不可重複加總。
-
-沒有案件層級加害人與被害人性別配對，不能推算男對女、女對男犯罪方向。未滿 12 歲自 2020-06-19 起不列入嫌疑犯統計，不代表沒有事件。嫌疑犯不等於判決有罪者，原有其他限制與官方連結均保留。
-
-## 部署到現有 GitHub Pages
-
-1. 先保留現有版本：下載儲存庫 ZIP 或在 GitHub 將目前 commit 建立標籤，例如 `v4-before-v5`。本包 `verification/original-v4.html` 也保存本次讀取的第四版原始檔。
-2. 將 ZIP 解壓縮。**部署 ZIP 裡與 `index.html` 同層的網站檔案**到 `Xun512/2025-` 的 `main` 分支根目錄；不要把 ZIP 本身或再一層資料夾當成網站根目錄。`verification/` 與 Markdown 文件可留在本機，網站不依賴它們。
-3. 至 GitHub 儲存庫 → Add file → Upload files，上傳所有 HTML、CSS、JS、`map-license.txt` 及 `.nojekyll`，取代原 `index.html`，以一個 commit 提交，例如 `Refactor crime dashboard to v5`。也可用 Git 一次提交全部檔案。
-4. 儲存庫 Settings → Pages：沿用既有部署來源。若以分支部署，設定 `Deploy from a branch`、`main`、`/ (root)`。若原本使用 Actions，將同一批靜態檔案作為 Pages artifact，無需 npm build。
-5. 等待 Pages deployment 成功，再開啟 `https://xun512.github.io/2025-/`，以強制重新整理載入新版。檢查 `#query`、`#rates`、`#county-map`、CSV、手機選單及主題。完整待驗收清單見 `TEST-REPORT.md`。
-
-Git 操作範例（先在自己的 clone 中完成檔案覆蓋，再執行）：
-
-```powershell
-git tag v4-before-v5
-git push origin v4-before-v5
-git add index.html *.css *.js map-license.txt .nojekyll
-git commit -m "Refactor crime dashboard to v5"
-git push origin main
+```bash
+python -m http.server 8000
 ```
 
-本次執行環境未連接可寫入的 GitHub 帳號，沒有代替你推送、修改 Pages 設定或驗證正式部署。部署教學以靜態根目錄為前提，請保留既有自訂網域或 Actions 設定。
+在瀏覽器開啟 `http://localhost:8000/` 可預覽第五版，開啟 `http://localhost:8000/v4.html` 可預覽第四版。
 
-## 回復第四版
+部署時將 `index.html`、`v4.html`、同層 JavaScript 與 CSS、`map-license.txt` 和 `.nojekyll` 一起放入 GitHub Pages 的發布目錄。在儲存庫的 **Settings → Pages** 選擇對應分支與目錄。兩版以相對路徑共用歷年資料與圖表程式，請保留檔名與目錄結構。
 
-建議將第五版整批放在單一 commit，之後使用 `git revert <第五版commit完整SHA>` 再 `git push origin main`。這會新增回復 commit，保留歷史，不需要強制推送。等待 Pages 重新部署即可。
+## 主要檔案
 
-如果採網頁上傳，將 `verification/original-v4.html` 改名為 `index.html`，上傳回根目錄取代新版首頁並提交即可回復第四版；剩餘 CSS／JS 不會被該單檔第四版引用。若上線後另有資料或功能更新，先檢查要回復的 commit，避免連帶撤銷後續改動。
-
-## 重跑檢查
-
-需已安裝 Node.js；色彩檢查另需 Python 3。在此包根目錄執行：
-
-```powershell
-node verification/test-v5.mjs
-node verification/test-query-ui.mjs
-node verification/test-routing.mjs
-node verification/test-theme.mjs
-python verification/test-contrast.py
-```
-
-瀏覽器預覽可於網站根目錄執行 `python -m http.server 8000`，再用瀏覽器開啟 `http://localhost:8000/`。若要模擬 GitHub Pages 子目錄，可將本包放入預覽伺服器的 `2025-` 資料夾，再從上層提供伺服器，開啟 `/2025-/`。瀏覽器測試請照 `TEST-REPORT.md` 補做。
-
-
-## 第四版／第五版切換（追加）
-
-新版 `index.html` 與完整第四版 `v4.html` 頁首主題按鈕旁都提供版本切換。第四版沿用原始單檔版的資料、程式與樣式，僅增加切換控制及本地授權連結；第五版維持資料平台架構。切換會對應目前分析主題（例如年齡、人口率、地圖），第五版專屬查詢頁切至第四版時回到案件總覽；不轉移各頁篩選條件。兩版沿用同一主題偏好儲存鍵。
-
-部署時務必一起上傳 `v4.html`、`version-switch.css`、`version-switch.js` 及其餘新版檔案。追加驗證已確認兩版原有內嵌／外部程式、互相連結與 ZIP 內容；瀏覽器畫面及實際點選仍受先前環境限制，未實測。
-
-
-## 導覽與版本控制修正（5.1）
-
-桌面版新增可操作的展開／收合選單按鈕，收合時側欄隱藏且分析區擴大；頁面切換保留桌面收合狀態。手機仍採抽屜選單，離開或按 Escape 可關閉。版本控制移至頁首主題按鈕旁，不再使用右下角浮動覆蓋。手機窄螢幕會分行排列，抽屜頂端依實際頁首高度調整，避免遮擋。
-
-追加測試：模擬 DOM 驗證桌面重複展開／收合、換頁後狀態、手機切換與跨尺寸恢復；HTML 檢查兩版版本控制確實位於 header 及主題按鈕後，CSS 不使用固定浮動位置。統計資料及原始公式雜湊維持一致。實際瀏覽器／手機視覺仍未實測，延續前述環境限制。
-
-
-## 手機抽屜修正（5.3）
-
-手機導覽改為從網頁視窗頂端展開的全高抽屜，不再從主題／版本按鈕下方開始。新增抽屜內關閉按鈕與背景遮罩；點擊遮罩、關閉按鈕或 Escape 可關閉。開啟時焦點移到關閉按鈕。保留獨立捲動及桌面收合。更新需同時替換 index.html、platform.js、version-switch.css，建議覆蓋整包。導覽事件模擬、HTML 結構及資料回歸檢查通過；實機視覺仍待驗證。
+| 檔案 | 用途 |
+| --- | --- |
+| `index.html`、`v4.html` | 第五版資料平台與第四版長頁報告 |
+| `data.js`、`extended-data.js`、`county-data.js` | 2025 年案件、人數、人口與縣市資料 |
+| `violence-history.js`、`violence-history.css` | 兩版共用的歷年暴力犯罪圖表與樣式 |
+| `violent-sex-data.js`、`violent-sex.js` | 歷年性別數據、年份選擇及 CSV 匯出 |
+| `version-switch.js`、`version-switch.css` | 版本切換與導覽樣式 |
