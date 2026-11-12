@@ -1,0 +1,21 @@
+.violence-history { margin-top: 24px; scroll-margin-top: 12px; }
+.violence-history .scope-notice li { margin-block: 10px; }
+.violence-history a { text-decoration: underline; }
+#violentHistoryBars { display: grid; gap: 10px; margin-block: 16px; }
+.violent-history-bar { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) 5.5rem; gap: 8px; align-items: center; }
+.violent-history-bar strong { text-align: end; }
+.violent-history-bar:nth-child(8) .fill { background: var(--female); }
+.violence-history .table-scroll { overflow-x: auto; }
+.violence-history th, .violence-history td { white-space: nowrap; }
+
+.violence-history .secondary-button {
+  padding: 8px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface-soft);
+  color: var(--ink);
+  cursor: pointer;
+}
+@media (max-width: 500px) {
+  .violent-history-bar { grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr) minmax(3.5rem, auto); }
+}

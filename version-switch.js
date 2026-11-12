@@ -1,7 +1,7 @@
 (() => {
   const control=document.querySelector('.edition-switch');
   if(!control)return;
-  const to4={home:'overview',query:'overview',age:'explore','violence-history':'violence'},to5={overview:'home',explore:'age'};
+  const to4={home:'overview',query:'overview',age:'explore'},to5={overview:'home',explore:'age'};
   function update(){
     let section='';
     try{section=decodeURIComponent(location.hash.slice(1))}catch{section=''}
